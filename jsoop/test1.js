@@ -32,17 +32,40 @@ console.log(xg instanceof CreatePerson2)  //true，与工厂模式不一样的�
 
 
 //原型模式（解决方法复用的问题）
-//工厂+原型
-function CreatePerson3(name) {
-  this.name = name;
+function CreatePersonP(name) {
+
 }
-CreatePerson3.prototype.echoName = function () {
+CreatePersonP.prototype.name = ''
+CreatePersonP.prototype.echoName = function () {
   console.log(this.name)
 }
 
-var xg2 = new CreatePerson3('xiaogang2')
-var xz2 = new CreatePerson3('xiaoze')
+var xg3 = new CreatePersonP();
+var xz3 = new CreatePersonP();
+xg3.name = 'xiaogang3';
+
+xg3.echoName()
+console.log(xg3.echoName == xz3.echoName)   // true
+console.log(xg3 instanceof CreatePersonP)   // true
+
+
+
+//组合模式 构建+原型
+function CreatePersonC(name) {
+  this.name = name;
+  this.hands = ['left','right'];
+}
+CreatePersonC.prototype.echoName = function () {
+  console.log(this.name)
+}
+
+var xg2 = new CreatePersonC('xiaogang2')
+var xz2 = new CreatePersonC('xiaoze')
+
+xg2.hands.push('third');
+console.log(xz2.hands)
 
 xg2.echoName()
 console.log(xg2.echoName == xz2.echoName)   //true，原型方法
-console.log(xg2 instanceof CreatePerson3)  //true，与工厂模式不一样的地方
+console.log(xg2 instanceof CreatePersonC)  //true，与工厂模式不一样的地方
+console.log('private:'+(xg2.hands == xz2.hands))

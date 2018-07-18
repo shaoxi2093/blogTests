@@ -42,3 +42,5 @@ xg.hands[2] = 'third'
 
 console.log(xg.hands)
 console.log(xm.hands)    //引用属性复用
+
+console.log(xg.sleep == xm.sleep)
