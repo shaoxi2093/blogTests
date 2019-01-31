@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+    if(!indexedDB){
+      console.log('你的浏览器不支持IndexedDB');
+    }
+    var idbRequest = indexedDB.open('abc',1);
+    idbRequest.onerror = function (e) {
+      console.log(e.currentTarget.error.message)
+    }
+    idbRequest.onsuccess = function (e) {
+      var db = e.target.result
+      console.log('success')
+
+
+    }
+    idbRequest.onupgradeneeded = function (e) {
+      var db = e.target.result
+      console.log('db.objectStoreNames:'+db.objectStoreNames)
+      if(!db.objectStoreNames.contains('person')){
+        console.log('new storeObj')
+        var objectStore = db.createObjectStore('person',{
+          keyPath: 'id',
+          autoIncrement: true
+        })
+
+        objectStore.createIndex('name','name',{
+          unique: false
+        })
+
+        objectStore.createIndex('phone','phone',{
+          unique: false
+        })
+        objectStore.createIndex('addr', 'addr',{
+          unique: false
+        })
+        objectStore.createIndex('remark','remark',{
+          unique: false
+        })
+        var transaction = db.transaction(['person'],'readwrite')
+        var objectStore2 = transaction.objectStore('person')
+        objectStore2.add({name:'小张',phone:'13813813838',addr:'cccc'})
+        objectStore2.add({name:'小王',phone:'13813813839',addr:'dddd',remark:'有备注'})
+        db.close()
+      }
+      console.log('now version:'+version)
+    }
+
+
+
+</script>
+<script>
+  var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+  if(!indexedDB){
+    console.log('你的浏览器不支持IndexedDB');
+  }
+  var idbRequest = indexedDB.open('abc',1);
+  idbRequest.onsuccess = function (e) {
+    var db = e.currentTarget.result
+    console.log(db.transaction(['person']).objectStore('person').get(1))
+
+    var transaction = db.transaction(['person'])
+    var objStore = transaction.objectStore('person')
+    objStore.openCursor().onsuccess = function (e) {
+      var cursor = e.target.result
+
+      if(cursor){
+        console.log('id:'+cursor.key)
+        console.log('name:'+ cursor.name)
+        console.log('phone:'+ cursor.phone)
+        console.log('addr:'+ cursor.addr)
+        console.log('remark:'+ cursor.remark)
+        cursor.continue()
+      }else {
+        console.log('read end')
+      }
+    }
+  }
+</script>
+</body>
+</html>
