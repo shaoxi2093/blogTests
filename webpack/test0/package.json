@@ -1,0 +1,17 @@
+{
+  "name": "shaoxi_webpack_test0",
+  "version": "1.0.0",
+  "description": "webpack test",
+  "main": "entry.js",
+  "scripts": {
+    "testBuild": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shaoxi",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+  }
+}

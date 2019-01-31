@@ -1,0 +1,21 @@
+{
+  "name": "shaoxi_blog_test",
+  "version": "1.0.0",
+  "description": "blog test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaoxi2093/blogTests.git"
+  },
+  "author": "shaoxi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaoxi2093/blogTests/issues"
+  },
+  "homepage": "https://github.com/shaoxi2093/blogTests#readme"
+}
