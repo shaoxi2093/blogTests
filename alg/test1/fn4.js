@@ -1,6 +1,7 @@
 const formatData = (tableData, keys) => {
   let hashTable = {}, res = []
   for (let i = 0; i < tableData.length; i++) {
+    debugger
     let arr = res, cur = hashTable
     for (let j = 0; j < keys.length; j++) {
       let key = keys[j], filed = tableData[i][key]

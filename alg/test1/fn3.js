@@ -1,49 +1,44 @@
 const formatData = (arr, keyArr) => {
-  arr.sort((a,b) => {
-    for(let key in keyArr) {
-      if(a[keyArr[key]] - b[keyArr[key]] !== 0){
-        return a[keyArr[key]] - b[keyArr[key]]
+  const res = []
+  for(let i = 0; i < arr.length; i++) {
+    console.log("res", res)
+    let addr = findAd(res, arr[i], keyArr)
+    if(addr.length === 0) {
+      let cycleObj = cycleRender(arr[i], keyArr)
+      res.push(cycleObj)
+    } else {
+      let resAd = res
+      for(let j = 0; j < addr.length; j++){
+        resAd = res[addr[j]].children
       }
-    }
-    return 0
-  })
-  let res = initData(arr, [], keyArr)
-  return res
-}
-// 只处理一层的结构
-const initData = (arr, parents, keyArr) => {
-  const resArr = []
-  for(let j in arr){
-    let hasItem = false
-    let item = arr[j]
-
-    console.log("j",j)
-    console.log("item",item)
-    for(let i=0; i < parents.length; i++){
-      if(item[keyArr[i]] === parents[i]){
-        hasItem = true
-        break
-      }
-    }
-    if(!hasItem){
-      console.log('=========111111========')
-      const value = item[keyArr[parents.length]]
-      resArr.push({
-        value,
-        ...parents.length < keyArr.length ? { children: initData(arr, [parents, value], keyArr)} : {}
+      resAd.push({
+        value: arr[i][keyArr[addr.length]],
+        ...addr.length === keyArr.length ? { children: [] } : {}
       })
     }
-    
   }
-  resArr.filter(item => item !== null)
-  return resArr
-} 
-const arr = [
-  {
-    value: 'string',
-    children: []  //同上arr结构
+  return res
+}
+const cycleRender = (data, keyArr, index = 0) => {
+  const result = {
+    value: data[keyArr[index]],
+    ...index < keyArr.length - 1 ? { children: [cycleRender(data, keyArr, index+1)]} : {}
   }
-]
+  return result
+}
+
+const findAd = (children, obj, keyArr, res = []) => {
+  for(let i = 0; i < children.length; i++){
+    if(children[i].value === obj[keyArr[0]]){
+      res.push(i)
+      keyArr.shift()
+      return findAd(children[i].children, obj, keyArr, res)
+    }
+  }
+  console.log(res)
+  return res
+}
+
 
 var data = [{
   "province": "浙江",
@@ -63,6 +58,5 @@ var data = [{
   "name": "九寨沟"
 }]
 
-debugger
 var result = formatData(data, ['province', 'city', 'name'])
 console.log(JSON.stringify(result))
