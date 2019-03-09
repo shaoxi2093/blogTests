@@ -1,4 +1,4 @@
-export default {
+exports.zhangsan = {
     name: 'zhangsan',
-    age: 20
+    age: 20,
 }
