@@ -83,7 +83,7 @@ const mergePromise3 = (ajaxArray) =>
         data[i] = resp
         count ++
         events.emit('onePromOk')
-      })
+      }, () => reject('error'))
     }
   })
 mergePromise3([ajax1, ajax2, ajax3]).then((data) => {
