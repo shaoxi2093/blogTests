@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas学习</title>
+</head>
+<body>
+    <canvas id="my-canvas" width="300" height="300">
+        浏览器不支持canvas哦
+    </canvas>
+    <script type="text/javascript">
+        function getUrlQuery() {
+            var queryObj = {}, searchStr = location.search || '';
+            var queryKvArr = searchStr.split('#')[0].split('&');
+            for(var i = 0; i < queryKvArr.length; i++) {
+                kvArr = queryKvArr[i].split('=');
+                queryObj[kvArr[0]] = kvArr[1];
+            }
+            return queryObj;
+        }
+
+        var query = getUrlQuery();
+        var canvasScript = document.createElement('script');
+        canvasScript.type = 'text/javascript';
+        if(query.js) {
+            canvasScript.src = './canvas'+js+'.js';
+        } else {
+            canvasScript.src = './index.js';
+        }
+        document.body.appendChild(canvasScript);
+    </script>
+</body>
+</html>
