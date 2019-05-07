@@ -13,6 +13,7 @@
     <script type="text/javascript">
         function getUrlQuery() {
             var queryObj = {}, searchStr = location.search || '';
+            searchStr = searchStr.substring(1);
             var queryKvArr = searchStr.split('#')[0].split('&');
             for(var i = 0; i < queryKvArr.length; i++) {
                 kvArr = queryKvArr[i].split('=');
@@ -25,7 +26,7 @@
         var canvasScript = document.createElement('script');
         canvasScript.type = 'text/javascript';
         if(query.js) {
-            canvasScript.src = './canvas'+js+'.js';
+            canvasScript.src = './canvas'+query.js+'.js';
         } else {
             canvasScript.src = './index.js';
         }
