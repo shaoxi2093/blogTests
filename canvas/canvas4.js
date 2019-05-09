@@ -39,8 +39,8 @@ ctx.lineTo(230, 125)
 
 ctx.stroke()
 
-// ctx.strokeStyle = "rgba(200, 0, 0, 1)"
-
+ctx.strokeStyle = "rgba(200, 0, 0, 1)"
+ctx.beginPath()
 ctx.moveTo(280, 140)
 ctx.bezierCurveTo(260, 120, 260, 150, 280, 170)
 ctx.bezierCurveTo(300, 150, 300, 120, 280, 140)
