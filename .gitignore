@@ -1,9 +1,6 @@
 .idea
-<<<<<<< HEAD
 .vscode
-=======
 .DS_Store
->>>>>>> 23d11d232bdd0b4867fa0ae9660e73e74c38091a
 
 # 忽略子路径下的node_modules目录文件
 /node_modules
