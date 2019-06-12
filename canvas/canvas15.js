@@ -33,12 +33,15 @@ for(var i = 1; i < 61; i++) {
   yB = yA - Math.cos(Math.PI * i / 30) * len
 
   
-  ctx.moveTo(xA, yA)
-  ctx.lineTo(xB, yB)
+  ctx.moveTo(xA, -yA)
+  ctx.lineTo(xB, -yB)
   ctx.stroke()
   if(i % 5 === 0) {
     var xNum = xA - Math.sin(Math.PI * i / 30) * 14 - 4
-    var yNum = yA - Math.cos(Math.PI * i / 30) * 14 + 4
-    ctx.fillText(i / 5, xNum, yNum)
+    var yNum = yA - Math.cos(Math.PI * i / 30) * 14 - 4
+    ctx.fillText(i / 5, xNum, -yNum)
+  }
+  if(i === 30) {
+    console.log(Math.round(xA), Math.round(yA))
   }
 }
