@@ -60,7 +60,7 @@ function getXY(angle, lineLen) {
 
 // 画时分秒指针 + 动画
 setInterval(function(){
-  ctx.restore()
+  // ctx.restore()
   var now = new Date()
   var h = now.getHours() - 12 >= 0 ? now.getHours() - 12 : now.getHours(),
     m = now.getMinutes(),
@@ -68,7 +68,7 @@ setInterval(function(){
   
   // 时针
   ctx.beginPath()
-  ctx.moveTo(100, 100)
+  ctx.moveTo(0, 0)
   ctx.strokeStyle = '#333333'
   ctx.lineWidth = '6px'
   var xyH = getXY(h * 30 + m / 2, 40)
@@ -77,7 +77,7 @@ setInterval(function(){
 
   // 分针
   ctx.beginPath()
-  ctx.moveTo(100, 100)
+  ctx.moveTo(0, 0)
   ctx.strokeStyle = '#666666'
   ctx.lineWidth = '4px'
   var xyM = getXY(m * 6, 60)
@@ -86,16 +86,14 @@ setInterval(function(){
 
   // 秒针
   ctx.beginPath()
-  ctx.moveTo(100, 100)
+  ctx.moveTo(0, 0)
   ctx.strokeStyle = '#999'
   ctx.lineWidth = '2px'
-  var xyS = getXY(s * 6, 60)
+  var xyS = getXY(s * 6, 65)
   ctx.lineTo(xyS.x, xyS.y)
   ctx.arc(xyS.x, xyS.y, 1, -Math.PI , Math.PI)
   ctx.stroke()
 
-
-  ctx.save()
 
 }, 1000)
 
