@@ -10,6 +10,7 @@
  * @param {number} target
  * @return {number[]}
  */
+<<<<<<< HEAD
 var twoSum = function (nums, target) {
   for (let i = 0; i < nums.length; i++) {
     const v = nums[i];
