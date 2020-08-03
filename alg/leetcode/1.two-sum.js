@@ -10,15 +10,17 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-    for(let i = 0; i < nums.length; i++) {
-      for(let j = i+1; j < nums.length; j++) {
-        if(nums[i] + nums[j] == target) {
-          return [i, j]
-        }
+var twoSum = function (nums, target) {
+  for (let i = 0; i < nums.length; i++) {
+    const v = nums[i];
+    const rest = target - v;
+    if (rest == v) {
+      if (nums.lastIndexOf(rest) > -1 && nums.lastIndexOf(rest) != i) {
+        return [i, nums.lastIndexOf(rest)];
       }
+    } else if (nums.indexOf(rest) > -1) {
+      return [i, nums.indexOf(rest)];
     }
-    return false
+  }
 };
 // @lc code=end
-
